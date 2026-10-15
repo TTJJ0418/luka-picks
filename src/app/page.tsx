@@ -1,74 +1,87 @@
 import Link from "next/link";
-
-const weeklyRankings = [
-  {
-    slug: "travel",
-    title: "出行 / 出游装备",
-    blurb: "背包、牵引、便携水碗等中小型犬友好清单",
-  },
-  {
-    slug: "shedding-care",
-    title: "掉毛护理",
-    blurb: "梳毛、吸尘器、防毛喷雾等实用组合",
-  },
-  {
-    slug: "snacks",
-    title: "零食选品",
-    blurb: "训练奖励、磨牙、低敏零食周榜",
-  },
-];
+import { RankingCard } from "@/components/RankingCard";
+import { getLiveRankings } from "@/data/rankings";
 
 export default function HomePage() {
+  const list = getLiveRankings();
+  const featured = list.find((r) => r.live) ?? list[0];
+
   return (
-    <div className="space-y-10">
-      <section className="rounded-3xl bg-gradient-to-br from-amber-100 via-orange-50 to-stone-50 px-6 py-10 shadow-sm ring-1 ring-amber-100/80">
-        <p className="text-sm font-medium text-amber-800">Week 1 · MVP 脚手架</p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
-          Luka Picks
-        </h1>
-        <p className="mt-3 max-w-2xl text-base leading-relaxed text-stone-700">
-          面向中国中小型犬的场景选品与周榜。先做场景排名（出行、掉毛护理、零食等），
-          后续接入品牌赞助与淘宝 / 京东联盟。由狗狗 Luka（约 600 粉账号）背书。
+    <div className="space-y-12">
+      <section className="relative overflow-hidden rounded-3xl bg-[#fff7ed] px-6 py-10 shadow-sm ring-1 ring-amber-100/90 sm:px-10 sm:py-12">
+        <div
+          className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-amber-200/40 blur-2xl"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute -bottom-20 left-10 h-40 w-40 rounded-full bg-orange-100/70 blur-2xl"
+          aria-hidden
+        />
+        <p className="relative text-sm font-medium text-amber-800">
+          卢卡精选 · 中小型犬场景指南
         </p>
-        <div className="mt-6 flex flex-wrap gap-3">
+        <h1 className="relative mt-3 max-w-xl text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl sm:leading-tight">
+          少踩雷的周榜，
+          <br className="hidden sm:block" />
+          从 Luka 的日常场景里来
+        </h1>
+        <p className="relative mt-4 max-w-xl text-[15px] leading-relaxed text-stone-700">
+          Luka Picks 面向中国中小型犬主人：不锁品种，先把出行、掉毛护理、零食等场景榜做扎实。
+          先帮你挑得准，再谈赞助与联盟链接。
+        </p>
+        <div className="relative mt-7 flex flex-wrap gap-3">
           <Link
-            href="/rank/travel"
-            className="rounded-full bg-amber-800 px-5 py-2.5 text-sm font-medium text-white hover:bg-amber-700"
+            href={`/rank/${featured.slug}`}
+            className="rounded-full bg-amber-900 px-5 py-2.5 text-sm font-medium text-amber-50 shadow-sm hover:bg-amber-800"
           >
-            查看本周榜单
+            看本周「{featured.shortTitle}」
           </Link>
           <Link
             href="/about"
-            className="rounded-full border border-amber-200 bg-white px-5 py-2.5 text-sm font-medium text-amber-900 hover:bg-amber-50"
+            className="rounded-full border border-amber-200/80 bg-white/80 px-5 py-2.5 text-sm font-medium text-amber-950 backdrop-blur hover:bg-white"
           >
-            认识 Luka
+            关于狗狗 Luka
           </Link>
         </div>
       </section>
 
       <section>
-        <div className="mb-4 flex items-end justify-between gap-4">
-          <h2 className="text-xl font-semibold text-stone-900">本周场景榜</h2>
-          <p className="text-sm text-stone-500">占位内容 · Day 2 将填充真实数据</p>
+        <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h2 className="text-xl font-semibold tracking-tight text-stone-900">
+              本周场景榜
+            </h2>
+            <p className="mt-1 text-sm text-stone-500">
+              先场景、再单品。点进去看排名与短评。
+            </p>
+          </div>
+          <p className="text-xs text-stone-400">占位商品 · Day 3 换真货</p>
         </div>
         <ul className="grid gap-4 sm:grid-cols-3">
-          {weeklyRankings.map((item) => (
+          {list.map((item) => (
             <li key={item.slug}>
-              <Link
-                href={`/rank/${item.slug}`}
-                className="block h-full rounded-2xl border border-stone-200 bg-white p-5 shadow-sm transition hover:border-amber-200 hover:shadow-md"
-              >
-                <h3 className="font-semibold text-stone-900">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-stone-600">
-                  {item.blurb}
-                </p>
-                <span className="mt-4 inline-block text-sm font-medium text-amber-800">
-                  进入榜单 →
-                </span>
-              </Link>
+              <RankingCard ranking={item} />
             </li>
           ))}
         </ul>
+      </section>
+
+      <section className="rounded-2xl border border-stone-200 bg-white px-5 py-6 sm:px-7">
+        <h2 className="text-base font-semibold text-stone-900">怎么用这份榜</h2>
+        <ol className="mt-3 grid gap-3 text-sm leading-relaxed text-stone-600 sm:grid-cols-3">
+          <li className="rounded-xl bg-stone-50 px-4 py-3">
+            <span className="font-medium text-stone-800">1. 选场景</span>
+            <p className="mt-1">出门、掉毛、零食——按你这周最头疼的事点进去。</p>
+          </li>
+          <li className="rounded-xl bg-stone-50 px-4 py-3">
+            <span className="font-medium text-stone-800">2. 看短评</span>
+            <p className="mt-1">每条只写中小型犬真正在意的点：重量、勒感、好不好洗。</p>
+          </li>
+          <li className="rounded-xl bg-stone-50 px-4 py-3">
+            <span className="font-medium text-stone-800">3. 再下单</span>
+            <p className="mt-1">购买链接稍后接入淘宝 / 京东；先当清单用也完全够。</p>
+          </li>
+        </ol>
       </section>
     </div>
   );

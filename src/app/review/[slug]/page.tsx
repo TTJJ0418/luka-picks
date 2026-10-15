@@ -1,15 +1,32 @@
 import Link from "next/link";
 import { Suspense } from "react";
+import { rankings } from "@/data/rankings";
 
 type Params = Promise<{ slug: string }>;
 
 export async function generateStaticParams() {
-  return [{ slug: "sample-1" }, { slug: "sample-2" }, { slug: "sample-3" }];
+  const fromRanks = rankings.flatMap((r) =>
+    r.products.map((p) => ({ slug: p.reviewSlug })),
+  );
+  const samples = [
+    { slug: "sample-1" },
+    { slug: "sample-2" },
+    { slug: "sample-3" },
+  ];
+  const seen = new Set<string>();
+  return [...fromRanks, ...samples].filter((p) => {
+    if (seen.has(p.slug)) return false;
+    seen.add(p.slug);
+    return true;
+  });
 }
 
 export async function generateMetadata({ params }: { params: Params }) {
   const { slug } = await params;
-  return { title: `评测 · ${slug}` };
+  const product = rankings
+    .flatMap((r) => r.products)
+    .find((p) => p.reviewSlug === slug);
+  return { title: product ? `评测 · ${product.name}` : `评测 · ${slug}` };
 }
 
 export default function ReviewPage({ params }: { params: Params }) {
@@ -22,20 +39,21 @@ export default function ReviewPage({ params }: { params: Params }) {
 
 async function ReviewContent({ params }: { params: Params }) {
   const { slug } = await params;
+  const product = rankings
+    .flatMap((r) => r.products)
+    .find((p) => p.reviewSlug === slug);
 
   return (
     <div className="space-y-6">
       <div>
         <p className="text-sm text-amber-800">单品评测</p>
         <h1 className="mt-1 text-3xl font-bold text-stone-900">
-          评测占位：{slug}
+          {product ? product.name : `评测占位：${slug}`}
         </h1>
         <p className="mt-2 max-w-2xl text-stone-600">
-          路由：
-          <code className="rounded bg-stone-100 px-1.5 py-0.5 text-sm">
-            /review/{slug}
-          </code>
-          。后续将包含适用体型、场景要点、优缺点与购买入口（淘宝 / 京东联盟）。
+          {product
+            ? product.blurb
+            : "完整评测正文将在 Day 3+ 补充。"}
         </p>
       </div>
 
@@ -48,9 +66,14 @@ async function ReviewContent({ params }: { params: Params }) {
         </ul>
       </article>
 
-      <Link href="/" className="inline-block text-sm text-amber-800 hover:underline">
-        ← 返回首页
-      </Link>
+      <div className="flex flex-wrap gap-4 text-sm">
+        <Link href="/rank/travel" className="text-amber-800 hover:underline">
+          ← 回看出行榜
+        </Link>
+        <Link href="/" className="text-stone-500 hover:underline">
+          首页
+        </Link>
+      </div>
     </div>
   );
 }
