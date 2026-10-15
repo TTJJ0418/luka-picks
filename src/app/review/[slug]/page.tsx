@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Suspense } from "react";
+import { AffiliateButtons } from "@/components/AffiliateButtons";
 import { rankings } from "@/data/rankings";
 import { getReviewDetail } from "@/data/reviews";
 
@@ -96,14 +97,15 @@ async function ReviewContent({ params }: { params: Params }) {
         </article>
       )}
 
-      <div className="flex flex-wrap items-center gap-3">
-        <a
-          href={product.affiliateUrl}
-          className="inline-flex rounded-full border border-dashed border-amber-200 px-4 py-2 text-sm text-amber-800 hover:bg-amber-50"
-          title="联盟链接占位"
-        >
-          购买链接（占位 · example.com）
-        </a>
+      <div className="flex flex-col gap-3 border-t border-stone-100 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p className="text-xs text-stone-400">
+            购买入口为联盟占位（example.com/PLACEHOLDER-*），非真实追踪链接
+          </p>
+          <div className="mt-2">
+            <AffiliateButtons product={product} size="md" />
+          </div>
+        </div>
         <Link
           href="/rank/starter"
           className="text-sm text-amber-800 hover:underline"

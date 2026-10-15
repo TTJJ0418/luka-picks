@@ -7,8 +7,16 @@ export type RankProduct = {
   score: number;
   priceRange: string;
   reviewSlug: string;
-  /** Placeholder until real Taobao/JD affiliate is wired */
-  affiliateUrl: string;
+  /**
+   * Taobao / Tmall affiliate (or product) URL.
+   * Replace PLACEHOLDER values with real union links when Steven has IDs.
+   */
+  taobaoUrl: string;
+  /**
+   * JD affiliate (or product) URL.
+   * Replace PLACEHOLDER values with real union links when Steven has IDs.
+   */
+  jdUrl: string;
   badge?: string;
 };
 
@@ -24,9 +32,14 @@ export type Ranking = {
   products: RankProduct[];
 };
 
-/** Affiliate placeholder — replace with real Taobao/JD union links later */
-export const AFFILIATE_PLACEHOLDER =
-  "https://example.com/affiliate-placeholder";
+/** Marked placeholders — NOT live tracking links. Swap per product later. */
+export function placeholderTaobao(productId: string): string {
+  return `https://example.com/PLACEHOLDER-taobao?id=${productId}`;
+}
+
+export function placeholderJd(productId: string): string {
+  return `https://example.com/PLACEHOLDER-jd?id=${productId}`;
+}
 
 export const rankings: Ranking[] = [
   {
@@ -37,7 +50,7 @@ export const rankings: Ranking[] = [
     blurb:
       "牵引、梳毛、零食、洗护、尿垫——家里刚养中小型犬，先把这五样备齐。",
     intro:
-      "按「新手刚需」排的：都是淘宝 / 京东上真实在卖、中小型犬主人常回购的款。分数是 Luka 视角的主观分，价格为近期电商常见区间，购买链接暂为联盟占位。",
+      "按「新手刚需」排的：都是淘宝 / 京东上真实在卖、中小型犬主人常回购的款。分数是 Luka 视角的主观分，价格为近期电商常见区间。「淘宝看看 / 京东看看」目前为联盟占位链接，拿到真实联盟 ID 后只需改数据文件。",
     updatedLabel: "本周主推 · 入门",
     live: true,
     products: [
@@ -52,7 +65,8 @@ export const rankings: Ranking[] = [
         score: 9.3,
         priceRange: "约 ¥120–150",
         reviewSlug: "puppytie-harness",
-        affiliateUrl: AFFILIATE_PLACEHOLDER,
+        taobaoUrl: placeholderTaobao("s1-puppytie"),
+        jdUrl: placeholderJd("s1-puppytie"),
         badge: "出门第一件",
       },
       {
@@ -66,7 +80,8 @@ export const rankings: Ranking[] = [
         score: 9.0,
         priceRange: "约 ¥150–220",
         reviewSlug: "furminator-small",
-        affiliateUrl: AFFILIATE_PLACEHOLDER,
+        taobaoUrl: placeholderTaobao("s2-furminator"),
+        jdUrl: placeholderJd("s2-furminator"),
         badge: "掉毛救星",
       },
       {
@@ -80,7 +95,8 @@ export const rankings: Ranking[] = [
         score: 8.7,
         priceRange: "约 ¥15–40",
         reviewSlug: "pedigree-dental-stick",
-        affiliateUrl: AFFILIATE_PLACEHOLDER,
+        taobaoUrl: placeholderTaobao("s3-pedigree"),
+        jdUrl: placeholderJd("s3-pedigree"),
         badge: "训练奖励",
       },
       {
@@ -94,7 +110,8 @@ export const rankings: Ranking[] = [
         score: 8.5,
         priceRange: "约 ¥35–50",
         reviewSlug: "enoug-sos-shampoo",
-        affiliateUrl: AFFILIATE_PLACEHOLDER,
+        taobaoUrl: placeholderTaobao("s4-enoug"),
+        jdUrl: placeholderJd("s4-enoug"),
       },
       {
         id: "s5",
@@ -107,7 +124,8 @@ export const rankings: Ranking[] = [
         score: 8.8,
         priceRange: "约 ¥30–45 / 50片",
         reviewSlug: "honeycare-pad-m",
-        affiliateUrl: AFFILIATE_PLACEHOLDER,
+        taobaoUrl: placeholderTaobao("s5-honeycare"),
+        jdUrl: placeholderJd("s5-honeycare"),
         badge: "消耗品之王",
       },
     ],

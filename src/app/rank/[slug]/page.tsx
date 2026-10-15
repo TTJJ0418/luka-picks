@@ -112,7 +112,7 @@ async function RankContent({ params }: { params: Params }) {
       </ol>
 
       <p className="rounded-xl bg-stone-50 px-4 py-3 text-xs leading-relaxed text-stone-500">
-        声明：品牌与价位来自淘宝 / 京东常见在售款，分数为主观排序；购买链接目前为联盟占位（example.com），非正式导购结算。
+        声明：品牌与价位来自淘宝 / 京东常见在售款，分数为主观排序。「淘宝看看 / 京东看看」指向 example.com/PLACEHOLDER-* 占位，拿到真实联盟 ID 后只需改 src/data/rankings.ts。
       </p>
 
       <Link href="/" className="inline-block text-sm text-amber-800 hover:underline">

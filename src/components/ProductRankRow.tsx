@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AffiliateButtons } from "@/components/AffiliateButtons";
 import type { RankProduct } from "@/data/rankings";
 
 export function ProductRankRow({
@@ -53,20 +54,14 @@ export function ProductRankRow({
         </p>
       </div>
 
-      <div className="flex shrink-0 flex-col gap-2 sm:w-36 sm:justify-center">
+      <div className="flex shrink-0 flex-col gap-2 sm:w-40 sm:justify-center">
         <Link
           href={`/review/${product.reviewSlug}`}
           className="inline-flex items-center justify-center rounded-full bg-amber-800 px-4 py-2 text-sm font-medium text-white hover:bg-amber-700"
         >
           看评测
         </Link>
-        <a
-          href={product.affiliateUrl}
-          className="inline-flex items-center justify-center rounded-full border border-dashed border-amber-200 px-4 py-2 text-center text-xs leading-snug text-amber-800/80 hover:bg-amber-50"
-          title="联盟链接占位，非真实跳转购买"
-        >
-          购买链接（占位）
-        </a>
+        <AffiliateButtons product={product} />
       </div>
     </li>
   );

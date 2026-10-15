@@ -37,7 +37,7 @@ npm run lint    # ESLint
 | `/sponsor` | 品牌合作 / 赞助（占位） |
 | `/about` | 关于 Luka |
 
-占位数据在 `src/data/rankings.ts`。
+占位数据在 `src/data/rankings.ts`（每品含 `taobaoUrl` / `jdUrl` 联盟占位，替换即可上线）。品牌合作见 `/sponsor`。
 
 ## 部署说明
 
