@@ -54,7 +54,7 @@ export function NewsletterSignup({ variant = "home" }: { variant?: Variant }) {
             每周一封，中小型犬少踩雷清单
           </h2>
           <p className="mt-2 max-w-lg text-sm leading-relaxed text-stone-600">
-            想第一时间收到场景榜更新与 Luka 实测短评？留下邮箱预约。
+            想收到场景榜更新与选购整理？留下邮箱预约。
             <span className="font-medium text-stone-800">
               目前尚未接通发送服务（Resend），提交不会真正发信或入库。
             </span>

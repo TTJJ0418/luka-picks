@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { AffiliateButtons } from "@/components/AffiliateButtons";
-import { rankings } from "@/data/rankings";
+import { getRankingByReviewSlug, rankings } from "@/data/rankings";
 import { getReviewDetail } from "@/data/reviews";
 
 type Params = Promise<{ slug: string }>;
@@ -35,6 +35,9 @@ export default function ReviewPage({ params }: { params: Params }) {
 async function ReviewContent({ params }: { params: Params }) {
   const { slug } = await params;
   const { product, detail } = getReviewDetail(slug);
+  const parent = getRankingByReviewSlug(slug);
+  const backHref = parent ? `/rank/${parent.slug}` : "/rank/starter";
+  const backLabel = parent ? `← 回${parent.shortTitle}` : "← 回入门五件套";
 
   if (!product) {
     return (
@@ -107,10 +110,10 @@ async function ReviewContent({ params }: { params: Params }) {
           </div>
         </div>
         <Link
-          href="/rank/starter"
+          href={backHref}
           className="text-sm text-amber-800 hover:underline"
         >
-          ← 回入门五件套
+          {backLabel}
         </Link>
       </div>
     </div>
