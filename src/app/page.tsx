@@ -9,7 +9,7 @@ export default function HomePage() {
 
   return (
     <div className="space-y-12">
-      <section className="relative overflow-hidden rounded-3xl bg-[#fff7ed] px-6 py-10 shadow-sm ring-1 ring-amber-100/90 sm:px-10 sm:py-12">
+      <section className="relative overflow-hidden rounded-3xl bg-cream px-6 py-10 shadow-[0_1px_2px_rgba(28,25,23,0.04)] ring-1 ring-line sm:px-10 sm:py-12">
         <div
           className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-amber-200/40 blur-2xl"
           aria-hidden
@@ -56,7 +56,7 @@ export default function HomePage() {
               先场景、再单品。点进去看排名与短评。
             </p>
           </div>
-          <p className="text-xs text-stone-400">入门榜已上真品牌 · 联盟链接待接</p>
+          <p className="text-xs text-stone-400">入门 + 掉毛已上线 · 联盟链接待接</p>
         </div>
         <ul className="grid gap-4 sm:grid-cols-3">
           {list.map((item) => (
@@ -67,7 +67,7 @@ export default function HomePage() {
         </ul>
       </section>
 
-      <section className="rounded-2xl border border-stone-200 bg-white px-5 py-6 sm:px-7">
+      <section className="rounded-2xl border border-line bg-cream px-5 py-6 sm:px-7">
         <h2 className="text-base font-semibold text-stone-900">怎么用这份榜</h2>
         <ol className="mt-3 grid gap-3 text-sm leading-relaxed text-stone-600 sm:grid-cols-3">
           <li className="rounded-xl bg-stone-50 px-4 py-3">

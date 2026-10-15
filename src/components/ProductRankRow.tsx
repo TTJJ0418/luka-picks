@@ -10,7 +10,7 @@ export function ProductRankRow({
   rank: number;
 }) {
   return (
-    <li className="flex flex-col gap-4 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm sm:flex-row sm:items-stretch sm:gap-5 sm:p-5">
+    <li className="flex flex-col gap-4 rounded-2xl border border-line bg-cream p-4 shadow-[0_1px_2px_rgba(28,25,23,0.04)] sm:flex-row sm:items-stretch sm:gap-5 sm:p-5">
       <div className="flex items-center gap-4 sm:w-[4.5rem] sm:shrink-0 sm:flex-col sm:justify-center sm:gap-1">
         <span
           className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold ${

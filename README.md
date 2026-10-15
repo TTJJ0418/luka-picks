@@ -31,8 +31,9 @@ npm run lint    # ESLint
 | 路径 | 说明 |
 |------|------|
 | `/` | 首页 · 英雄区 + 本周场景榜卡片 |
-| `/rank/starter` | **Live**：入门五件套（牵引 / 梳毛 / 零食 / 洗护 / 尿垫 · 真实品牌） |
-| `/rank/travel`、`shedding-care`、`snacks` | 「即将上线」 |
+| `/rank/starter` | **Live**：入门五件套 |
+| `/rank/shedding-care` | **Live**：掉毛护理（5 品） |
+| `/rank/travel`、`snacks` | 「即将上线」 |
 | `/review/[slug]` | 单品评测占位（从榜单 CTA 进入） |
 | `/sponsor` | 品牌合作 / 赞助 |
 | `POST /api/newsletter` | 订阅**占位**接口（不发信、不存库） |
@@ -49,6 +50,8 @@ npm run lint    # ESLint
 - 之后若要真正收集名单，需 Steven 配置 Resend（或其它供应商）API Key，再改 `src/app/api/newsletter/route.ts`。
 
 小红书运营草稿见 `content/xiaohongshu-week1.md`（仅供人工复制发布，未代发）。
+
+日常改内容 / 换联盟 / 部署阻塞项见 **[OPS.md](./OPS.md)**。
 
 ## 部署说明
 

@@ -44,7 +44,7 @@ export function NewsletterSignup({ variant = "home" }: { variant?: Variant }) {
       className={
         compact
           ? "w-full max-w-md"
-          : "rounded-3xl border border-amber-100 bg-gradient-to-br from-amber-50 via-orange-50/40 to-white px-6 py-8 shadow-sm sm:px-8"
+          : "rounded-3xl border border-line bg-gradient-to-br from-amber-50/90 via-orange-50/30 to-cream px-6 py-8 shadow-[0_1px_2px_rgba(28,25,23,0.04)] sm:px-8"
       }
     >
       {!compact ? (

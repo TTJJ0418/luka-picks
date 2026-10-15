@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s · Luka Picks",
   },
   description:
-    "面向中国中小型犬的场景选品与周榜：出行、掉毛护理、零食等。由狗狗 Luka 背书。",
+    "面向中国中小型犬的场景选品与周榜：入门五件套、掉毛护理、出行、零食等。由狗狗 Luka 背书。",
 };
 
 export default function RootLayout({
@@ -35,7 +35,7 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <Header />
-        <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8">
+        <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8 sm:px-6 sm:py-10">
           {children}
         </main>
         <Footer />
