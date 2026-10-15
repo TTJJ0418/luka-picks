@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { RankingCard } from "@/components/RankingCard";
 import { getLiveRankings } from "@/data/rankings";
 
@@ -83,6 +84,8 @@ export default function HomePage() {
           </li>
         </ol>
       </section>
+
+      <NewsletterSignup variant="home" />
     </div>
   );
 }

@@ -34,10 +34,21 @@ npm run lint    # ESLint
 | `/rank/starter` | **Live**：入门五件套（牵引 / 梳毛 / 零食 / 洗护 / 尿垫 · 真实品牌） |
 | `/rank/travel`、`shedding-care`、`snacks` | 「即将上线」 |
 | `/review/[slug]` | 单品评测占位（从榜单 CTA 进入） |
-| `/sponsor` | 品牌合作 / 赞助（占位） |
+| `/sponsor` | 品牌合作 / 赞助 |
+| `POST /api/newsletter` | 订阅**占位**接口（不发信、不存库） |
 | `/about` | 关于 Luka |
 
 占位数据在 `src/data/rankings.ts`（每品含 `taobaoUrl` / `jdUrl` 联盟占位，替换即可上线）。品牌合作见 `/sponsor`。
+
+## 邮件简报（Newsletter）
+
+首页与页脚有「预约订阅」表单，请求 `POST /api/newsletter`。
+
+- **当前为占位**：不调用 Resend、不持久化邮箱、不发送任何邮件。
+- 提交成功时前端会提示「即将开通」。
+- 之后若要真正收集名单，需 Steven 配置 Resend（或其它供应商）API Key，再改 `src/app/api/newsletter/route.ts`。
+
+小红书运营草稿见 `content/xiaohongshu-week1.md`（仅供人工复制发布，未代发）。
 
 ## 部署说明
 
