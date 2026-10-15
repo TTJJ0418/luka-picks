@@ -26,7 +26,7 @@ export default function HomePage() {
           从 Luka 的日常场景里来
         </h1>
         <p className="relative mt-4 max-w-xl text-[15px] leading-relaxed text-stone-700">
-          Luka Picks 面向中国中小型犬主人：不锁品种，先把出行、掉毛护理、零食等场景榜做扎实。
+          Luka Picks 面向中国中小型犬主人：不锁品种，先从入门五件套（牵引、梳毛、零食、洗护、尿垫）开始，再铺场景榜。
           先帮你挑得准，再谈赞助与联盟链接。
         </p>
         <div className="relative mt-7 flex flex-wrap gap-3">
@@ -55,7 +55,7 @@ export default function HomePage() {
               先场景、再单品。点进去看排名与短评。
             </p>
           </div>
-          <p className="text-xs text-stone-400">占位商品 · Day 3 换真货</p>
+          <p className="text-xs text-stone-400">入门榜已上真品牌 · 联盟链接待接</p>
         </div>
         <ul className="grid gap-4 sm:grid-cols-3">
           {list.map((item) => (

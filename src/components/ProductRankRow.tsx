@@ -9,8 +9,8 @@ export function ProductRankRow({
   rank: number;
 }) {
   return (
-    <li className="flex flex-col gap-4 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm sm:flex-row sm:items-center sm:gap-5 sm:p-5">
-      <div className="flex items-center gap-4 sm:w-16 sm:shrink-0 sm:flex-col sm:gap-1">
+    <li className="flex flex-col gap-4 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm sm:flex-row sm:items-stretch sm:gap-5 sm:p-5">
+      <div className="flex items-center gap-4 sm:w-[4.5rem] sm:shrink-0 sm:flex-col sm:justify-center sm:gap-1">
         <span
           className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold ${
             rank === 1
@@ -31,30 +31,42 @@ export function ProductRankRow({
 
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">
-          <h3 className="text-base font-semibold text-stone-900 sm:text-lg">
-            {product.name}
-          </h3>
+          <span className="rounded-full bg-stone-100 px-2 py-0.5 text-xs font-medium text-stone-600">
+            {product.category}
+          </span>
           {product.badge ? (
             <span className="rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-900 ring-1 ring-amber-100">
               {product.badge}
             </span>
           ) : null}
+          <span className="text-xs text-stone-400">{product.priceRange}</span>
         </div>
+        <h3 className="mt-1.5 text-base font-semibold text-stone-900 sm:text-lg">
+          {product.name}
+        </h3>
         <p className="mt-1.5 text-sm leading-relaxed text-stone-600">
           {product.blurb}
         </p>
+        <p className="mt-2 text-xs leading-relaxed text-stone-500">
+          <span className="font-medium text-stone-700">为何上榜：</span>
+          {product.whyRanked}
+        </p>
       </div>
 
-      <div className="flex shrink-0 gap-2 sm:flex-col sm:items-stretch">
+      <div className="flex shrink-0 flex-col gap-2 sm:w-36 sm:justify-center">
         <Link
           href={`/review/${product.reviewSlug}`}
           className="inline-flex items-center justify-center rounded-full bg-amber-800 px-4 py-2 text-sm font-medium text-white hover:bg-amber-700"
         >
           看评测
         </Link>
-        <span className="inline-flex items-center justify-center rounded-full border border-dashed border-stone-300 px-4 py-2 text-sm text-stone-400">
-          购买链接 · 待接
-        </span>
+        <a
+          href={product.affiliateUrl}
+          className="inline-flex items-center justify-center rounded-full border border-dashed border-amber-200 px-4 py-2 text-center text-xs leading-snug text-amber-800/80 hover:bg-amber-50"
+          title="联盟链接占位，非真实跳转购买"
+        >
+          购买链接（占位）
+        </a>
       </div>
     </li>
   );

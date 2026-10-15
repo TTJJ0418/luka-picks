@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const nav = [
   { href: "/", label: "首页" },
-  { href: "/rank/travel", label: "场景榜单" },
+  { href: "/rank/starter", label: "场景榜单" },
   { href: "/sponsor", label: "品牌合作" },
   { href: "/about", label: "关于 Luka" },
 ];

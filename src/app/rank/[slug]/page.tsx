@@ -55,12 +55,12 @@ async function RankContent({ params }: { params: Params }) {
           </h1>
           <p className="mx-auto mt-2 max-w-md text-stone-600">{ranking.blurb}</p>
           <p className="mt-4 inline-flex rounded-full bg-white px-4 py-1.5 text-sm font-medium text-amber-900 ring-1 ring-amber-100">
-            即将上线 · 先收藏出行榜用着
+            即将上线 · 先看入门五件套
           </p>
         </div>
         <div className="flex flex-wrap justify-center gap-4 text-sm">
-          <Link href="/rank/travel" className="font-medium text-amber-800 hover:underline">
-            去看出行必备榜 →
+          <Link href="/rank/starter" className="font-medium text-amber-800 hover:underline">
+            去看入门五件套 →
           </Link>
           <Link href="/" className="text-stone-500 hover:underline">
             返回首页
@@ -112,7 +112,7 @@ async function RankContent({ params }: { params: Params }) {
       </ol>
 
       <p className="rounded-xl bg-stone-50 px-4 py-3 text-xs leading-relaxed text-stone-500">
-        声明：以上为占位示例商品与分数，非正式测评结论；联盟购买链接与真实评测将在后续版本接入。
+        声明：品牌与价位来自淘宝 / 京东常见在售款，分数为主观排序；购买链接目前为联盟占位（example.com），非正式导购结算。
       </p>
 
       <Link href="/" className="inline-block text-sm text-amber-800 hover:underline">

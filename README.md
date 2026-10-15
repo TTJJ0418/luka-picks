@@ -31,8 +31,8 @@ npm run lint    # ESLint
 | 路径 | 说明 |
 |------|------|
 | `/` | 首页 · 英雄区 + 本周场景榜卡片 |
-| `/rank/travel` | **Live 演示榜**：出行必备（5 个占位商品） |
-| `/rank/shedding-care`、`/rank/snacks` | 「即将上线」占位 |
+| `/rank/starter` | **Live**：入门五件套（牵引 / 梳毛 / 零食 / 洗护 / 尿垫 · 真实品牌） |
+| `/rank/travel`、`shedding-care`、`snacks` | 「即将上线」 |
 | `/review/[slug]` | 单品评测占位（从榜单 CTA 进入） |
 | `/sponsor` | 品牌合作 / 赞助（占位） |
 | `/about` | 关于 Luka |
