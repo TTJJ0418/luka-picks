@@ -14,13 +14,24 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteTitle = "Luka Picks · 卢卡精选";
+const siteDescription =
+  "面向中国中小型犬的场景选品与周榜：入门五件套、掉毛护理、出行、零食等。由狗狗 Luka 背书。";
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://luka-picks.vercel.app"),
   title: {
-    default: "Luka Picks · 卢卡精选",
+    default: siteTitle,
     template: "%s · Luka Picks",
   },
-  description:
-    "面向中国中小型犬的场景选品与周榜：入门五件套、掉毛护理、出行、零食等。由狗狗 Luka 背书。",
+  description: siteDescription,
+  openGraph: {
+    locale: "zh_CN",
+    siteName: siteTitle,
+    type: "website",
+    title: siteTitle,
+    description: siteDescription,
+  },
 };
 
 export default function RootLayout({
