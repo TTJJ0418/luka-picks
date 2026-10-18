@@ -13,7 +13,7 @@
 | 栈 | Next.js App Router + TypeScript + Tailwind |
 | 本地跑 | `npm install && npm run dev` → http://localhost:3000 |
 | 构建 | `npm run build` 必须通过再提交 |
-| Git | 仅本地 `main`；**尚未**绑定 GitHub remote |
+| Git | GitHub `TTJJ0418/luka-picks`；`main` push 自动部署 Vercel |
 
 **已上线榜单（live）**
 
@@ -114,14 +114,14 @@
 
 | 步骤 | 状态 | 谁做 |
 |------|------|------|
-| `gh auth login` + 建 GitHub repo + push | 未做 | Steven 授权 |
-| Vercel 登录并 Import 项目 | 未做 | Steven 授权 |
+| GitHub repo + push | ✅ 已完成 | — |
+| Vercel Git 连接（main 自动部署） | ✅ 已完成 · https://luka-picks.vercel.app | — |
 | 自定义域名购买 / DNS | 未做 | Steven 决定与付费 |
 | 真实淘宝联盟 / 京东联盟 ID | 未做 | Steven 申请后填入数据 |
 | 赞助联系邮箱 | 占位 | Steven 填写 |
 | Resend | 未接 | Steven 配置 |
 
-本仓库 **不要** 在未授权时推送、部署、买域名或花钱。
+日常 SEO/文案可 push `main` 自动上线。**买域名、接付费服务、发 newsletter、赞助 outreach、换真实联盟链之前必须先问 Steven。**
 
 ---
 
