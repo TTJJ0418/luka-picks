@@ -20,8 +20,12 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Params }) {
   const { slug } = await params;
-  const { product } = getReviewDetail(slug);
-  return { title: product ? `评测 · ${product.name}` : `评测 · ${slug}` };
+  const { product, detail } = getReviewDetail(slug);
+  return {
+    title: product ? `评测 · ${product.name}` : `评测 · ${slug}`,
+    description: product ? (detail?.lead ?? product.blurb).slice(0, 120) : undefined,
+    alternates: { canonical: `/review/${slug}` },
+  };
 }
 
 export default function ReviewPage({ params }: { params: Params }) {

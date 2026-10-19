@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "品牌合作",
   description:
     "Luka Picks 品牌赞助说明：场景榜位、评测露出、后续简报提及。合作联系方式待 Steven 填写。",
+  alternates: { canonical: "/sponsor" },
 };
 
 const tiers = [

@@ -16,6 +16,7 @@ export async function generateMetadata({ params }: { params: Params }) {
   return {
     title: ranking.live ? `${ranking.title}榜` : `${ranking.shortTitle} · 即将上线`,
     description: ranking.blurb,
+    alternates: { canonical: `/rank/${ranking.slug}` },
   };
 }
 
