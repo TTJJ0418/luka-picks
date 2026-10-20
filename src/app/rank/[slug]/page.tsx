@@ -71,8 +71,39 @@ async function RankContent({ params }: { params: Params }) {
     );
   }
 
+  const siteUrl = "https://luka-picks.vercel.app";
+  const pageUrl = `${siteUrl}/rank/${ranking.slug}`;
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: ranking.title,
+      description: ranking.blurb,
+      url: pageUrl,
+      numberOfItems: ranking.products.length,
+      itemListElement: ranking.products.map((product, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: product.name,
+        url: `${siteUrl}/review/${product.reviewSlug}`,
+      })),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "首页", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: ranking.title, item: pageUrl },
+      ],
+    },
+  ];
+
   return (
     <div className="space-y-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+      />
       <header className="space-y-3 border-b border-stone-200 pb-6">
         <div className="flex flex-wrap items-center gap-2 text-sm text-amber-800">
           <Link href="/" className="hover:underline">
