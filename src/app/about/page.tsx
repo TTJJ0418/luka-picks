@@ -1,9 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const aboutTitle = "关于 Luka";
+const aboutDescription =
+  "Luka 是一只中小型犬，背后账号约 600 位关注者。Luka Picks（卢卡精选）以 Luka 的日常场景为切口，整理面向中国中小型犬的选品与周榜。";
+
 export const metadata: Metadata = {
-  title: "关于 Luka",
+  title: aboutTitle,
+  description: aboutDescription,
   alternates: { canonical: "/about" },
+  openGraph: {
+    title: aboutTitle,
+    description: aboutDescription,
+    url: "/about",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: aboutTitle,
+    description: aboutDescription,
+  },
 };
 
 export default function AboutPage() {

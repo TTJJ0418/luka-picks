@@ -1,11 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const sponsorTitle = "品牌合作";
+const sponsorDescription =
+  "Luka Picks 品牌赞助说明：场景榜位、评测露出、后续简报提及。合作联系方式待 Steven 填写。";
+
 export const metadata: Metadata = {
-  title: "品牌合作",
-  description:
-    "Luka Picks 品牌赞助说明：场景榜位、评测露出、后续简报提及。合作联系方式待 Steven 填写。",
+  title: sponsorTitle,
+  description: sponsorDescription,
   alternates: { canonical: "/sponsor" },
+  openGraph: {
+    title: sponsorTitle,
+    description: sponsorDescription,
+    url: "/sponsor",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: sponsorTitle,
+    description: sponsorDescription,
+  },
 };
 
 const tiers = [

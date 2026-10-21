@@ -13,10 +13,26 @@ export async function generateMetadata({ params }: { params: Params }) {
   const { slug } = await params;
   const ranking = getRanking(slug);
   if (!ranking) return { title: "榜单未找到" };
+  const title = ranking.live
+    ? `${ranking.title}榜`
+    : `${ranking.shortTitle} · 即将上线`;
+  const description = ranking.blurb;
+  const url = `/rank/${ranking.slug}`;
   return {
-    title: ranking.live ? `${ranking.title}榜` : `${ranking.shortTitle} · 即将上线`,
-    description: ranking.blurb,
-    alternates: { canonical: `/rank/${ranking.slug}` },
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      type: "website",
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+    },
   };
 }
 

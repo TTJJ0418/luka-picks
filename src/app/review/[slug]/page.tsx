@@ -21,10 +21,26 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Params }) {
   const { slug } = await params;
   const { product, detail } = getReviewDetail(slug);
+  const title = product ? `评测 · ${product.name}` : `评测 · ${slug}`;
+  const description = product
+    ? (detail?.lead ?? product.blurb).slice(0, 120)
+    : undefined;
+  const url = `/review/${slug}`;
   return {
-    title: product ? `评测 · ${product.name}` : `评测 · ${slug}`,
-    description: product ? (detail?.lead ?? product.blurb).slice(0, 120) : undefined,
-    alternates: { canonical: `/review/${slug}` },
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      type: "website",
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+    },
   };
 }
 
