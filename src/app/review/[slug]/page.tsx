@@ -74,8 +74,31 @@ async function ReviewContent({ params }: { params: Params }) {
     );
   }
 
+  const siteUrl = "https://luka-picks.vercel.app";
+  const crumbs = [
+    { "@type": "ListItem", position: 1, name: "首页", item: siteUrl },
+    ...(parent
+      ? [{ "@type": "ListItem", position: 2, name: parent.title, item: `${siteUrl}/rank/${parent.slug}` }]
+      : []),
+    {
+      "@type": "ListItem",
+      position: parent ? 3 : 2,
+      name: product.name,
+      item: `${siteUrl}/review/${slug}`,
+    },
+  ];
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs,
+  };
+
   return (
     <div className="space-y-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+      />
       <header className="space-y-3 border-b border-stone-200 pb-6">
         <p className="text-sm text-amber-800">
           单品评测 · {product.category}
