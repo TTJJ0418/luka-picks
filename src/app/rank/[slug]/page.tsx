@@ -12,7 +12,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Params }) {
   const { slug } = await params;
   const ranking = getRanking(slug);
-  if (!ranking) return { title: "榜单未找到" };
+  if (!ranking)
+    return { title: "榜单未找到", robots: { index: false, follow: true } };
   const title = ranking.live
     ? `${ranking.title}榜`
     : `${ranking.shortTitle} · 即将上线`;
@@ -22,6 +23,8 @@ export async function generateMetadata({ params }: { params: Params }) {
     title,
     description,
     alternates: { canonical: url },
+    // Coming-soon rankings are thin placeholders: keep them out of the index.
+    ...(ranking.live ? {} : { robots: { index: false, follow: true } }),
     openGraph: {
       title,
       description,

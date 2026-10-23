@@ -30,6 +30,8 @@ export async function generateMetadata({ params }: { params: Params }) {
     title,
     description,
     alternates: { canonical: url },
+    // Unknown slugs and fallback pages without a full review stay out of the index.
+    ...(product && detail ? {} : { robots: { index: false, follow: true } }),
     openGraph: {
       title,
       description,
