@@ -89,11 +89,28 @@ async function ReviewContent({ params }: { params: Params }) {
       item: `${siteUrl}/review/${slug}`,
     },
   ];
-  const jsonLd = {
+  const breadcrumbLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: crumbs,
   };
+  // FAQPage from existing section headings/bodies (no new copy).
+  const faqLd =
+    detail && detail.sections.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: detail.sections.map((section) => ({
+            "@type": "Question",
+            name: section.heading,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: section.body,
+            },
+          })),
+        }
+      : null;
+  const jsonLd = faqLd ? [breadcrumbLd, faqLd] : breadcrumbLd;
 
   return (
     <div className="space-y-8">
