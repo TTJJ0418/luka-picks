@@ -58,6 +58,18 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationId = `${siteUrl}/#organization`;
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": organizationId,
+  name: siteTitle,
+  url: siteUrl,
+  description: siteDescription,
+  inLanguage: "zh-CN",
+};
+
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -65,6 +77,7 @@ const websiteJsonLd = {
   url: siteUrl,
   description: siteDescription,
   inLanguage: "zh-CN",
+  publisher: { "@id": organizationId },
 };
 
 export default function RootLayout({
@@ -80,7 +93,9 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([organizationJsonLd, websiteJsonLd]),
+          }}
         />
         <Header />
         <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8 sm:px-6 sm:py-10">
