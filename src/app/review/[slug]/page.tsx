@@ -110,7 +110,16 @@ async function ReviewContent({ params }: { params: Params }) {
           })),
         }
       : null;
-  const jsonLd = faqLd ? [breadcrumbLd, faqLd] : breadcrumbLd;
+  // Product from existing page fields only (no invented ratings/offers/brand).
+  const productLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: detail?.lead ?? product.blurb,
+    category: product.category,
+    url: `${siteUrl}/review/${slug}`,
+  };
+  const jsonLd = [breadcrumbLd, productLd, ...(faqLd ? [faqLd] : [])];
 
   return (
     <div className="space-y-8">
