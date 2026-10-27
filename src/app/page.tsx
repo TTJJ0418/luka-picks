@@ -27,7 +27,7 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(itemListJsonLd).replace(/</g, "\u003c"),
+          __html: JSON.stringify(itemListJsonLd).replace(/</g, "\\u003c"),
         }}
       />
       <section className="relative overflow-hidden rounded-3xl bg-cream px-6 py-10 shadow-[0_1px_2px_rgba(28,25,23,0.04)] ring-1 ring-line sm:px-10 sm:py-12">
