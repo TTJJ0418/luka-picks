@@ -6,9 +6,30 @@ import { getLiveRankings } from "@/data/rankings";
 export default function HomePage() {
   const list = getLiveRankings();
   const featured = list.find((r) => r.live) ?? list[0];
+  const siteUrl = "https://luka-picks.vercel.app";
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "本周场景榜",
+    description:
+      "Luka Picks 面向中国中小型犬的场景选品榜单：入门五件套、掉毛护理、出行、零食等。",
+    numberOfItems: list.length,
+    itemListElement: list.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.title,
+      url: `${siteUrl}/rank/${item.slug}`,
+    })),
+  };
 
   return (
     <div className="space-y-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(itemListJsonLd).replace(/</g, "\u003c"),
+        }}
+      />
       <section className="relative overflow-hidden rounded-3xl bg-cream px-6 py-10 shadow-[0_1px_2px_rgba(28,25,23,0.04)] ring-1 ring-line sm:px-10 sm:py-12">
         <div
           className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-amber-200/40 blur-2xl"
