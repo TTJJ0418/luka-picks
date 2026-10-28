@@ -6,6 +6,9 @@ import { getLiveRankings } from "@/data/rankings";
 export default function HomePage() {
   const list = getLiveRankings();
   const featured = list.find((r) => r.live) ?? list[0];
+  // Structured data should only list indexable (live) rankings; coming-soon
+  // cards stay in the UI but are noindex and omitted from ItemList / sitemap.
+  const liveList = list.filter((r) => r.live);
   const siteUrl = "https://luka-picks.vercel.app";
   const itemListJsonLd = {
     "@context": "https://schema.org",
@@ -13,8 +16,8 @@ export default function HomePage() {
     name: "本周场景榜",
     description:
       "Luka Picks 面向中国中小型犬的场景选品榜单：入门五件套、掉毛护理、出行、零食等。",
-    numberOfItems: list.length,
-    itemListElement: list.map((item, index) => ({
+    numberOfItems: liveList.length,
+    itemListElement: liveList.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
       name: item.title,
