@@ -21,17 +21,23 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Params }) {
   const { slug } = await params;
   const { product, detail } = getReviewDetail(slug);
-  const title = product ? `评测 · ${product.name}` : `评测 · ${slug}`;
-  const description = product
-    ? (detail?.lead ?? product.blurb).slice(0, 120)
-    : undefined;
+  // Unknown slug: noindex + do not self-canonical (inherit root homepage canonical),
+  // matching unknown /rank/[slug] behavior.
+  if (!product) {
+    return {
+      title: `评测 · ${slug}`,
+      robots: { index: false, follow: true },
+    };
+  }
+  const title = `评测 · ${product.name}`;
+  const description = (detail?.lead ?? product.blurb).slice(0, 120);
   const url = `/review/${slug}`;
   return {
     title,
     description,
     alternates: { canonical: url },
-    // Unknown slugs and fallback pages without a full review stay out of the index.
-    ...(product && detail ? {} : { robots: { index: false, follow: true } }),
+    // Fallback product rows without a full review stay out of the index.
+    ...(detail ? {} : { robots: { index: false, follow: true } }),
     openGraph: {
       title,
       description,
