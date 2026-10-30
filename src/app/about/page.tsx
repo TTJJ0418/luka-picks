@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const siteUrl = "https://luka-picks.vercel.app";
 const aboutTitle = "关于 Luka";
 const aboutDescription =
   "Luka 是一只中小型犬，背后账号约 600 位关注者。Luka Picks（卢卡精选）以 Luka 的日常场景为切口，整理面向中国中小型犬的选品与周榜。";
+const aboutUrl = `${siteUrl}/about`;
 
 export const metadata: Metadata = {
   title: aboutTitle,
@@ -22,9 +24,33 @@ export const metadata: Metadata = {
   },
 };
 
+const aboutJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: aboutTitle,
+    description: aboutDescription,
+    url: aboutUrl,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "首页", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: aboutTitle, item: aboutUrl },
+    ],
+  },
+];
+
 export default function AboutPage() {
   return (
     <div className="space-y-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(aboutJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <div>
         <h1 className="text-3xl font-bold text-stone-900">关于 Luka</h1>
         <p className="mt-3 max-w-2xl leading-relaxed text-stone-600">
