@@ -92,20 +92,27 @@ async function RankContent({ params }: { params: Params }) {
 
   const siteUrl = "https://luka-picks.vercel.app";
   const pageUrl = `${siteUrl}/rank/${ranking.slug}`;
+  // CollectionPage wraps the existing ItemList (no invented fields).
   const jsonLd = [
     {
       "@context": "https://schema.org",
-      "@type": "ItemList",
+      "@type": "CollectionPage",
       name: ranking.title,
       description: ranking.blurb,
       url: pageUrl,
-      numberOfItems: ranking.products.length,
-      itemListElement: ranking.products.map((product, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        name: product.name,
-        url: `${siteUrl}/review/${product.reviewSlug}`,
-      })),
+      mainEntity: {
+        "@type": "ItemList",
+        name: ranking.title,
+        description: ranking.blurb,
+        url: pageUrl,
+        numberOfItems: ranking.products.length,
+        itemListElement: ranking.products.map((product, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: product.name,
+          url: `${siteUrl}/review/${product.reviewSlug}`,
+        })),
+      },
     },
     {
       "@context": "https://schema.org",
