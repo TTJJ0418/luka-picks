@@ -1,9 +1,33 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const siteUrl = "https://luka-picks.vercel.app";
+
 const sponsorTitle = "品牌合作";
 const sponsorDescription =
   "Luka Picks 品牌赞助说明：场景榜位、评测露出、后续简报提及。合作联系方式待 Steven 填写。";
+
+const sponsorUrl = `${siteUrl}/sponsor`;
+
+const sponsorJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: sponsorTitle,
+    description: sponsorDescription,
+    url: sponsorUrl,
+    inLanguage: "zh-CN",
+    isPartOf: { "@type": "WebSite", name: "Luka Picks", url: siteUrl },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "首页", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: sponsorTitle, item: sponsorUrl },
+    ],
+  },
+];
 
 export const metadata: Metadata = {
   title: sponsorTitle,
@@ -58,6 +82,12 @@ const tiers = [
 export default function SponsorPage() {
   return (
     <div className="space-y-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(sponsorJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <header className="space-y-3">
         <p className="text-sm font-medium text-amber-800">Brand sponsorship</p>
         <h1 className="text-3xl font-bold tracking-tight text-stone-900">
