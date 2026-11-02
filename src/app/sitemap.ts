@@ -4,6 +4,10 @@ import { getReviewDetail } from "@/data/reviews";
 
 const BASE = "https://luka-picks.vercel.app";
 
+// Stable lastmod: new Date() made every URL look changed on every request,
+// which teaches crawlers to ignore lastmod. Bump this when content changes.
+const CONTENT_UPDATED = new Date("2026-11-01T00:00:00+08:00");
+
 export default function sitemap(): MetadataRoute.Sitemap {
   // getLiveRankings() currently returns all rankings (homepage shows upcoming
   // cards too); filter live:true so only published rank pages enter the sitemap.
@@ -12,19 +16,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: BASE,
-      lastModified: new Date(),
+      lastModified: CONTENT_UPDATED,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${BASE}/about`,
-      lastModified: new Date(),
+      lastModified: CONTENT_UPDATED,
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
       url: `${BASE}/sponsor`,
-      lastModified: new Date(),
+      lastModified: CONTENT_UPDATED,
       changeFrequency: "monthly",
       priority: 0.5,
     },
@@ -32,7 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const rankPages: MetadataRoute.Sitemap = liveRankings.map((r) => ({
     url: `${BASE}/rank/${r.slug}`,
-    lastModified: new Date(),
+    lastModified: CONTENT_UPDATED,
     changeFrequency: "weekly",
     priority: 0.9,
   }));
@@ -43,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter((p) => Boolean(getReviewDetail(p.reviewSlug).detail))
     .map((p) => ({
       url: `${BASE}/review/${p.reviewSlug}`,
-      lastModified: new Date(),
+      lastModified: CONTENT_UPDATED,
       changeFrequency: "monthly",
       priority: 0.7,
     }));
